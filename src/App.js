@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 
 import "./App.scss";
@@ -12,9 +12,9 @@ import IndividualQuestion from "./pages/IndividualQuestion";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import AddQuestion from "./pages/AddQuestion";
+import PrivateRoute from "./components/PrivateRoute";
 
 class App extends Component {
-
   // load initial redux store data, users + questions
   componentDidMount() {
     this.props.dispatch(getInitialData());
@@ -25,11 +25,17 @@ class App extends Component {
       <Router>
         <div className="App">
           <Navigation />
-          <Route path="/" exact component={Home} />
-          <Route path="/login" component={Login} />
-          <Route path="/leaderboard" component={Leaderboard} />
-          <Route path="/add" component={AddQuestion} />
-          <Route path="/question/:qid" component={IndividualQuestion} />
+          <Switch>
+            <Route path="/" exact component={Home} />
+            <Route path="/login" component={Login} />
+            <PrivateRoute path="/leaderboard" component={Leaderboard} />
+            <PrivateRoute path="/add" component={AddQuestion} />
+            <PrivateRoute
+              path="/question/:qid"
+              component={IndividualQuestion}
+            />
+            <Route render={() => ("404")} />
+          </Switch>
         </div>
       </Router>
     );
