@@ -39,7 +39,7 @@ class AddQuestion extends Component {
         });
         setTimeout(function() {
           history.push("/");
-        }, 3000);
+        }, 1500);
       });
     } else {
       this.setState({

@@ -45,8 +45,7 @@ class IndividualQuestion extends Component {
                         (votes.optionOneVotes.length / votes.totalVotes) * 100
                       }
                       label={`${Math.round((votes.optionOneVotes.length /
-                        votes.totalVotes)) *
-                        100}%`}
+                        votes.totalVotes)*100)}%`}
                     />
                     <br />
                   </Col>
@@ -61,8 +60,7 @@ class IndividualQuestion extends Component {
                       }
                       variant="danger"
                       label={`${Math.round((votes.optionTwoVotes.length /
-                        votes.totalVotes)) *
-                        100}%`}
+                        votes.totalVotes)*100)}%`}
                     />
                     <br />
                   </Col>

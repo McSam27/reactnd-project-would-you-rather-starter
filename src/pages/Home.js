@@ -23,7 +23,7 @@ class Home extends React.Component {
 
       // check if the user is auth
     if (isUserAuthed) {
-      const userId = auth.user.id;
+      const userId = auth.id;
       // for each question check if the user is part of the optionOne.votes || optionTwo.votes
       answeredQuestions = questions.filter((question) => (question.optionOne.votes.indexOf(userId)) || (question.optionTwo.votes.indexOf(userId)));
       // for each question check if user id is in optionOne or optionTwo votes

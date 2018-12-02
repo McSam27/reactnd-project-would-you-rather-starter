@@ -24,7 +24,7 @@ function addQuestion(question) {
 
 export function handleAddQuestion(optionOneText, optionTwoText) {
   return (dispatch, getState) => {
-    const authorID = getState().auth.user.id;
+    const authorID = getState().auth.id;
     return saveQuestion({
         author: authorID,
         optionOneText,
@@ -45,7 +45,7 @@ function saveAnswer ({ authedUser, qid, answer }) {
 
 export function handleSaveQuestionAnswer(vote) {
   return (dispatch, getState) => {
-    const authedUser = getState().auth.user.id;
+    const authedUser = getState().auth.id;
     console.log(vote);
     const answerData = {
       authedUser,

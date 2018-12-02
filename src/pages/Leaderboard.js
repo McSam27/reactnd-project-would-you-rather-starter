@@ -48,7 +48,7 @@ class Leaderboard extends Component {
                   <td colSpan={1}>{user.questions.length}</td>
                   <td colSpan={1}>{Object.keys(user.answers).length}</td>
                   <td colSpan={1}>{user.score}</td>
-                  <td colSpan={1}>{index + 1}</td>
+                  <td colSpan={1}><strong>{index + 1}</strong></td>
                 </tr>
               ))}
             </tbody>

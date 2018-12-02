@@ -42,7 +42,7 @@ class Navigation extends Component {
             <Nav>
               {this.props.auth === null ? (
                 <React.Fragment>
-                  <Navbar.Text style={{marginRight: 16}}>Sign in to vote</Navbar.Text>
+                  <Navbar.Text style={{marginRight: 16}}>Sign in</Navbar.Text>
                   <LinkContainer to="/login">
                     <Button variant="outline-primary">Login</Button>
                   </LinkContainer>
@@ -50,7 +50,7 @@ class Navigation extends Component {
               ) : (
                 <React.Fragment>
                   <Navbar.Text style={{marginRight: 16}}>
-                    Welcome back {this.props.auth.user.name}
+                    Welcome back {this.props.auth.name}
                   </Navbar.Text>
                   <Button
                     variant="outline-danger"
