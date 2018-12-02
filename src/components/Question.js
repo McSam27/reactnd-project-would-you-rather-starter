@@ -1,8 +1,28 @@
 import React from "react";
 import { Card, Container, Row, Col, Image, Button } from "react-bootstrap";
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 import { LinkContainer } from "react-router-bootstrap";
+import { handleSaveQuestionAnswer } from '../actions/questions';
 
 class Question extends React.Component {
+
+  handleVote = (e, option) => {
+    e.preventDefault();
+    const { dispatch, question, history, auth } = this.props;
+    if ( auth === null ) {
+      history.push('/login');
+      return;
+    }
+    const qid = question.id;
+    const vote = { qid, answer: option };
+
+    dispatch(handleSaveQuestionAnswer(vote));
+    history.push({
+      pathname: `/question/${qid}`,
+    });
+  }
+
   render() {
     const { question, individual } = this.props;
 
@@ -28,13 +48,14 @@ class Question extends React.Component {
                 <Row>
                   <Col>
                     <div className="answers-wrapper">
-                      <div className="choices first" tabIndex={0} role="button">
+                      <div className="choices first" tabIndex={0} role="button" onClick={(e) => this.handleVote(e, 'optionOne')}>
                         {question.optionOne.text}
                       </div>
                       <div
                         className="choices second"
                         tabIndex={0}
                         role="button"
+                        onClick={(e) => this.handleVote(e, 'optionTwo')}
                       >
                         {question.optionTwo.text}
                       </div>
@@ -60,4 +81,6 @@ class Question extends React.Component {
   }
 }
 
-export default Question;
+const mapStateToProps = ({ auth }) => ({ auth })
+
+export default withRouter(connect(mapStateToProps)(Question));

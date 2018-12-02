@@ -1,6 +1,7 @@
 import {
   GET_QUESTIONS,
-  ADD_QUESTION
+  ADD_QUESTION,
+  SAVE_QUESTION_ANSWER,
 } from '../actions/types'
 
 function questions(state = {}, action) {
@@ -15,6 +16,17 @@ function questions(state = {}, action) {
           ...state,
           [action.question.id]: action.question
         }
+      case SAVE_QUESTION_ANSWER:
+      const { qid, answer, authedUser } = action;
+        return {
+          ...state,
+          [qid]: {
+            ...state[qid],
+            [answer]: {
+              ...state[qid][answer],
+              votes: [...state[qid][answer].votes, authedUser],
+            },
+          },        }
     default:
       return state
   }

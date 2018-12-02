@@ -1,9 +1,11 @@
 import {
   GET_QUESTIONS,
-  ADD_QUESTION
+  ADD_QUESTION,
+  SAVE_QUESTION_ANSWER,
 } from "./types";
 import {
-  saveQuestion
+  saveQuestion,
+  saveQuestionAnswer,
 } from '../utils/api';
 
 export function getQuestions(questions) {
@@ -30,4 +32,29 @@ export function handleAddQuestion(optionOneText, optionTwoText) {
       })
       .then((question) => dispatch(addQuestion(question)));
   };
+}
+
+function saveAnswer ({ authedUser, qid, answer }) {
+  return {
+    type: SAVE_QUESTION_ANSWER,
+    authedUser,
+    qid,
+    answer,
+  };
+}
+
+export function handleSaveQuestionAnswer(vote) {
+  return (dispatch, getState) => {
+    const authedUser = getState().auth.user.id;
+    console.log(vote);
+    const answerData = {
+      authedUser,
+      qid: vote.qid,
+      answer: vote.answer,
+    };
+    return saveQuestionAnswer(answerData)
+      .then (() => {
+        dispatch(saveAnswer(answerData));
+      })
+  }
 }

@@ -1,9 +1,9 @@
 import React from "react";
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 import { Route, Redirect } from "react-router-dom";
 
 function PrivateRoute({ component: Component, ...rest }) {
-    const { auth } = rest;
+  const { auth } = rest;
   return (
     <Route
       {...rest}
@@ -25,10 +25,10 @@ function PrivateRoute({ component: Component, ...rest }) {
   );
 }
 
-function mapStateToProps({ auth })  {
-    return {
-        auth
-    }
+function mapStateToProps({ auth }) {
+  return {
+    auth,
+  };
 }
 
 export default connect(mapStateToProps)(PrivateRoute);
