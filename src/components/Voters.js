@@ -5,8 +5,8 @@ export default function Voters({ votes }) {
   return (
     <ListGroup variant="flush">
       {votes.length !== 0 ? (
-        votes.map(voter => (
-          <ListGroup.Item>
+        votes.map((voter, index) => (
+          <ListGroup.Item key={`${voter.name}-${index}`}>
             <Image
               src={voter.avatarURL}
               alt={`${voter.name} avatar`}

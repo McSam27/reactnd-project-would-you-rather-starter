@@ -26,6 +26,8 @@ class Question extends React.Component {
   render() {
     const { question, individual } = this.props;
 
+    const date = `${new Intl.DateTimeFormat('en-US').format(question.timestamp)} at ${new Date(question.timestamp).toLocaleTimeString('en-US', {hour: '2-digit', minute:'2-digit'})}`
+
     return (
       <Row className="question-card">
         <Col>
@@ -66,7 +68,7 @@ class Question extends React.Component {
             </Card.Body>
             <Card.Footer>
               <p>Asked by {question.author}</p>
-              <p>Timestamp: {question.timestamp}</p>
+              <p>Submitted: {date}</p>
               {
                 !individual && <LinkContainer to={`/question/${question.id}`}>
                 <Button variant="light" size="sm">View more details</Button>

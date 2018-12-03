@@ -14,7 +14,7 @@ class Navigation extends Component {
     return (
       <div>
         <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
-          <LinkContainer to="/" exact>
+          <LinkContainer to="/">
             <Navbar.Brand>
               <img
                 alt=""
@@ -29,7 +29,7 @@ class Navigation extends Component {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="mr-auto">
-              <LinkContainer to="/">
+              <LinkContainer exact to="/">
                 <Nav.Link>Home</Nav.Link>
               </LinkContainer>
               <LinkContainer to="/add">

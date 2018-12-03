@@ -23,6 +23,12 @@ class IndividualQuestion extends Component {
       }));
     }
 
+    let optionOneLabel = votes.optionOneVotes.length === 0 ? 0 :  Math.round((votes.optionOneVotes.length /
+      votes.totalVotes)*100);
+
+    let optionTwoLabel = votes.optionTwoVotes.length === 0 ? 0 : Math.round((votes.optionTwoVotes.length /
+      votes.totalVotes)*100)
+
     return (
       <Container style={{ marginTop: 24 }}>
         {question !== undefined && votes !== undefined && (
@@ -44,8 +50,7 @@ class IndividualQuestion extends Component {
                       now={
                         (votes.optionOneVotes.length / votes.totalVotes) * 100
                       }
-                      label={`${Math.round((votes.optionOneVotes.length /
-                        votes.totalVotes)*100)}%`}
+                      label={`${optionOneLabel}%`}
                     />
                     <br />
                   </Col>
@@ -59,8 +64,7 @@ class IndividualQuestion extends Component {
                         (votes.optionTwoVotes.length / votes.totalVotes) * 100
                       }
                       variant="danger"
-                      label={`${Math.round((votes.optionTwoVotes.length /
-                        votes.totalVotes)*100)}%`}
+                      label={`${optionTwoLabel}%`}
                     />
                     <br />
                   </Col>
