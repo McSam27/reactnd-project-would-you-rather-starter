@@ -13,6 +13,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import AddQuestion from "./pages/AddQuestion";
 import PrivateRoute from "./components/PrivateRoute";
+import Error404 from './components/Error404';
 
 class App extends Component {
   // load initial redux store data, users + questions
@@ -34,7 +35,7 @@ class App extends Component {
               path="/question/:qid"
               component={IndividualQuestion}
             />
-            <Route render={() => ("404")} />
+            <Route component={Error404} />
           </Switch>
         </div>
       </Router>
