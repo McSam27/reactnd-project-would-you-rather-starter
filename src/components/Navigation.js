@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Navbar, Nav, Button } from "react-bootstrap";
+import { Navbar, Nav } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import { connect } from "react-redux";
 import { logOut } from "../actions/auth";
@@ -42,9 +42,9 @@ class Navigation extends Component {
             <Nav>
               {this.props.auth === null ? (
                 <React.Fragment>
-                  <Navbar.Text style={{marginRight: 16}}>Sign in</Navbar.Text>
+                  <Navbar.Text style={{marginRight: 16}}>Sign in to do cool stuff</Navbar.Text>
                   <LinkContainer to="/login">
-                    <Button variant="outline-primary">Login</Button>
+                    <Nav.Link>Login</Nav.Link>
                   </LinkContainer>
                 </React.Fragment>
               ) : (
@@ -52,14 +52,11 @@ class Navigation extends Component {
                   <Navbar.Text style={{marginRight: 16}}>
                     Welcome back {this.props.auth.name}
                   </Navbar.Text>
-                  <Button
-                    variant="outline-danger"
-                    onClick={e => {
+                  <LinkContainer to="/" onClick={e => {
                       this.handleLogout(e);
-                    }}
-                  >
-                    Logout
-                  </Button>
+                    }}>
+                      <Nav.Link>Logout</Nav.Link>
+                  </LinkContainer>
                 </React.Fragment>
               )}
             </Nav>

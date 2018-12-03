@@ -8,23 +8,10 @@ import "./Home.scss";
 
 class Home extends React.Component {
   render() {
-    const { questions, auth } = this.props;
+    const { questions, auth, unansweredQuestions, answeredQuestions } = this.props;
 
     // check if user is auth
     const isUserAuthed = auth !== null;
-
-    // define open / answered question arrays to display
-    let unansweredQuestions = [],
-    answeredQuestions = [];
-
-      // check if the user is auth
-    if (isUserAuthed) {
-      const userId = auth.id;
-      // for each question check if the user is part of the optionOne.votes || optionTwo.votes
-      answeredQuestions = questions.filter((question) => (question.optionOne.votes.indexOf(userId)) || (question.optionTwo.votes.indexOf(userId)));
-      // for each question check if user id is in optionOne or optionTwo votes
-      unansweredQuestions = questions.filter((question) => (question.optionOne.votes.indexOf(userId) === -1 ) && (question.optionTwo.votes.indexOf(userId)) === -1);
-    }
 
     return (
       <Container style={{ marginTop: 24 }}>
@@ -56,8 +43,8 @@ class Home extends React.Component {
               <Container>
                 <Tab.Content>
                   <Tab.Pane eventKey="all">
-                    {this.props.questions.length !== 0 &&
-                      this.props.questions.map(question => (
+                    {questions.length !== 0 &&
+                      questions.map(question => (
                         <Question question={question} key={`all-${question.id}`}/>
                       ))}{" "}
                   </Tab.Pane>
@@ -102,9 +89,24 @@ function mapStateToProps({ users, questions, auth }) {
     return new Date(b.timestamp) - new Date(a.timestamp);
   })
 
+  // define open / answered question arrays to display
+  let unansweredQuestions = [],
+  answeredQuestions = [];
+
+    // check if the user is auth
+  if (auth !== null) {
+    const userId = auth.id;
+    // for each question check if the user is part of the optionOne.votes || optionTwo.votes
+    answeredQuestions = questionData.filter((question) => (question.optionOne.votes.indexOf(userId)) || (question.optionTwo.votes.indexOf(userId)));
+    // for each question check if user id is in optionOne or optionTwo votes
+    unansweredQuestions = questionData.filter((question) => (question.optionOne.votes.indexOf(userId) === -1 ) && (question.optionTwo.votes.indexOf(userId)) === -1);
+  }
+
   return {
     questions: questionData,
     auth,
+    unansweredQuestions,
+    answeredQuestions,
   };
 }
 
