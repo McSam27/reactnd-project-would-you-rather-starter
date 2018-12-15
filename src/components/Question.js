@@ -11,7 +11,7 @@ class Question extends React.Component {
     e.preventDefault();
     const { dispatch, question, history, auth } = this.props;
     if ( auth === null ) {
-      history.push('/login');
+      history.push('/error');
       return;
     }
     const qid = question.id;
