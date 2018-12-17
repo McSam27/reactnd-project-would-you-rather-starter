@@ -10,7 +10,7 @@ export default function Error404() {
           <Alert.Heading>Oh snap! You got a 404 error!</Alert.Heading>
           <p>Looks like something went wrong. Sorry about that.</p>
           <LinkContainer to="/login">
-            <Alert.Link href="/login">Try logging in here</Alert.Link>
+            <Alert.Link>Try logging in here</Alert.Link>
           </LinkContainer>
         </Alert>
       </Container>

@@ -52,7 +52,7 @@ class Navigation extends Component {
                   <Navbar.Text style={{marginRight: 16}}>
                     Welcome back {this.props.auth.name}
                   </Navbar.Text>
-                  <LinkContainer to="/" onClick={e => {
+                  <LinkContainer to="/login" onClick={e => {
                       this.handleLogout(e);
                     }}>
                       <Nav.Link>Logout</Nav.Link>

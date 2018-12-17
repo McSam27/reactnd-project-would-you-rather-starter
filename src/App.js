@@ -27,7 +27,7 @@ class App extends Component {
         <div className="App">
           <Navigation />
           <Switch>
-            <Route path="/" exact component={Home} />
+            <PrivateRoute path="/" exact component={Home} />
             <Route path="/login" component={Login} />
             <PrivateRoute path="/leaderboard" component={Leaderboard} />
             <PrivateRoute path="/add" component={AddQuestion} />
