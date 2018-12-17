@@ -47,7 +47,6 @@ function saveAnswer ({ authedUser, qid, answer }) {
 export function handleSaveQuestionAnswer(vote) {
   return (dispatch, getState) => {
     const authedUser = getState().auth.id;
-    console.log(vote);
     const answerData = {
       authedUser,
       qid: vote.qid,

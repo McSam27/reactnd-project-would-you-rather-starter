@@ -5,6 +5,7 @@ import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 
 import { handleAddQuestion } from "../actions/questions";
+import { getInitialData } from "../actions/shared";
 
 class AddQuestion extends Component {
   constructor(props) {
@@ -32,6 +33,7 @@ class AddQuestion extends Component {
     const { dispatch, history } = this.props;
     if (optionOne && optionTwo) {
       dispatch(handleAddQuestion(optionOne, optionTwo)).then(() => {
+        dispatch(getInitialData());
         this.setState({
           optionOne: "",
           optionTwo: "",

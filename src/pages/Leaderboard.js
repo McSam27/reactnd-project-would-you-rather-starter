@@ -6,12 +6,22 @@ import PageTitle from "../components/PageTitle";
 class Leaderboard extends Component {
   render() {
     const { users } = this.props;
-    // add up score
+    let data = [];
+
+    // organize user data
     Object.keys(users).map(user => {
-      return users[user].score = users[user].questions.length + Object.keys(users[user].answers).length;
+      data.push({
+        id: user,
+        name: users[user].name,
+        avatarURL: users[user].avatarURL,
+        questions: users[user].questions.length,
+        answers: Object.keys(users[user].answers).length,
+        score: users[user].score = users[user].questions.length + Object.keys(users[user].answers).length
+      });
+      return null;
     })
     // sort according to descending score
-    users.sort((obj1, obj2) => {
+    data.sort((obj1, obj2) => {
       return obj2.score - obj1.score;
     })
 
@@ -34,7 +44,7 @@ class Leaderboard extends Component {
               </tr>
             </thead>
             <tbody>
-              {users.map((user, index) => (
+              {data.map((user, index) => (
                 <tr key={user.id}>
                   <td colSpan={3}>
                     <Image
@@ -45,8 +55,8 @@ class Leaderboard extends Component {
                     />
                     {user.name}
                   </td>
-                  <td colSpan={1}>{user.questions.length}</td>
-                  <td colSpan={1}>{Object.keys(user.answers).length}</td>
+                  <td colSpan={1}>{user.questions}</td>
+                  <td colSpan={1}>{user.answers}</td>
                   <td colSpan={1}>{user.score}</td>
                   <td colSpan={1}><strong>{index + 1}</strong></td>
                 </tr>
