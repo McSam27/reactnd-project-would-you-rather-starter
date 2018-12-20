@@ -2,22 +2,34 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Card, DropdownButton, Dropdown } from "react-bootstrap";
 import { connect } from "react-redux";
-import { withRouter } from 'react-router-dom'
+import { Redirect, withRouter } from 'react-router-dom'
 
 import { setAuthUser } from '../actions/auth';
 import logo from "../assets/logo.svg";
 
 class Login extends Component {
+  state = {
+    redirectToReferrer: false,
+  }
 
   handleLogin = (e, id) => {
-    const { dispatch, history } = this.props;
+    const { dispatch } = this.props;
     dispatch(setAuthUser(id))
       .then(() => {
-        history.push('/');
+        this.setState(() => ({
+          redirectToReferrer: true
+        }));
       });
   }
 
   render() {
+    const { from } = this.props.location.state || { from: { pathname: '/' } }
+    const { redirectToReferrer } = this.state
+
+    if (redirectToReferrer === true) {
+      return <Redirect to={from} />
+    }
+
     return (
       <Card bg="secondary" text="white" className="login-card">
         <Card.Header>Please sign in to continue</Card.Header>
