@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Container, Card, ProgressBar, Row, Col } from "react-bootstrap";
+import { Redirect } from 'react-router-dom';
 import Question from "../components/Question";
 import Voters from "../components/Voters";
 import { connect } from "react-redux";
@@ -10,7 +11,9 @@ class IndividualQuestion extends Component {
     let answered = false;
     let votes = {};
 
-    if (question !== undefined) {
+    if (question === undefined) {
+      return <Redirect to="/404" />;
+    } else {
       Object.keys(users[auth.id].answers).map(answerId => {
         if (question.id === answerId) {
           answered = true;
